@@ -10,6 +10,11 @@ public class TestUserDAO implements UserDAO {
 
     public static User dbUser;
 
+    private String lastSearchedUsernName;
+    public String getLastSearchedUsernName(){
+        return lastSearchedUsernName;
+    }
+
     public TestUserDAO() {
         nonDbUser = new User();
         nonDbUser.setPassword(TestPasswordEncrypter.password);
@@ -55,6 +60,7 @@ public class TestUserDAO implements UserDAO {
 
     @Override
     public User findByUsername(String username) {
+        lastSearchedUsernName = username;
         if (nonDbUser.getUsername().equals(username)) {
             return dbUser;
         } else {

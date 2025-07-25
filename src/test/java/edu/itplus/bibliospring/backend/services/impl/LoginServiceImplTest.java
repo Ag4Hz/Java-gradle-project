@@ -9,11 +9,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LoginServiceImplTest {
     private LoginServiceImpl serviceUnderTest;
 
+    private TestUserDAO testUserDao;
+
     @BeforeEach
     void setUp() {
         // Initialize the service under test
         serviceUnderTest = new LoginServiceImpl();
-        ReflectionTestUtils.setField(serviceUnderTest, "userDAO", new TestUserDAO());
+
+        testUserDao = new TestUserDAO();
+
+        ReflectionTestUtils.setField(serviceUnderTest, "userDAO", testUserDao);
         ReflectionTestUtils.setField(serviceUnderTest, "passwordEncrypter", new TestPasswordEncrypter());
 
         // Mock dependencies if necessary, e.g., UserDAO and PasswordEncrypter
@@ -41,6 +46,7 @@ class LoginServiceImplTest {
         // Verify that the UserDAO's findByUsername method was called with the correct username
         // Verify that the PasswordEncrypter's hashPassword method was called with the correct parameters
         assertThat(loginStatus).isTrue();
+        assertThat(testUserDao.getLastSearchedUsernName()).isEqualTo(TestUserDAO.nonDbUser.getUsername());
     }
 
     @Test
