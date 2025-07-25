@@ -6,9 +6,23 @@ import edu.itplus.bibliospring.backend.repository.UserDAO;
 import java.util.List;
 
 public class TestUserDAO implements UserDAO {
+    private User user;
+
+    public TestUserDAO() {
+        user = new User();
+        user.setPassword("123");
+        user.setUsername("Pistike");
+        user.setUuid("salt");
+        user.setId(1L);
+    }
+
     @Override
     public User findById(Long id) {
-        return null;
+        if (user.getId().equals(id)) {
+            return user;
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -18,21 +32,25 @@ public class TestUserDAO implements UserDAO {
 
     @Override
     public void update(User user) {
-
+        throw new UnsupportedOperationException("Not implemented in TestUserDAO");
     }
 
     @Override
     public void delete(User user) {
-
+        throw new UnsupportedOperationException("Not implemented in TestUserDAO");
     }
 
     @Override
     public List<User> getAll() {
-        return List.of();
+        return List.of(new User[]{user});
     }
 
     @Override
     public User findByUsername(String username) {
-        return null;
+        if (user.getUsername().equals(username)) {
+            return user;
+        } else {
+            return null;
+        }
     }
 }
