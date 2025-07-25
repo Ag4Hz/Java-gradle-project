@@ -1,13 +1,12 @@
 package edu.itplus.bibliospring.backend.utils;
 
-import org.junit.jupiter.api.Test;
+import edu.itplus.bibliospring.backend.utils.impl.PasswordEncrypterSha256;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.UUID;
 import static org.assertj.core.api.Assertions.*;
 
-class PasswordEncrypterTest {
+class PasswordEncrypterSha256Test {
     @ParameterizedTest
     @CsvSource({
             "password123,18b09ff8-9718-49ea-9588-c1a65ff10d8e,7DA449FC9ECCB29FF0312FFF1F88C125B38B2F1EE5C37DD52B52A1EE9593883B",
@@ -19,7 +18,7 @@ class PasswordEncrypterTest {
     })
     void hashPassword_passwordIsHashed_hashedPasswordIsCorrect(String password, String salt, String expectedHash) {
         // Arrange
-        PasswordEncrypter systemUnderTest = new PasswordEncrypter();
+        PasswordEncrypterSha256 systemUnderTest = new PasswordEncrypterSha256();
 
         // Act
         String hashedPassword = systemUnderTest.hashPassword(password, salt);

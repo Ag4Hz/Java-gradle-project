@@ -4,6 +4,7 @@ import edu.itplus.bibliospring.backend.model.User;
 import edu.itplus.bibliospring.backend.repository.UserDAO;
 import edu.itplus.bibliospring.backend.services.LoginService;
 import edu.itplus.bibliospring.backend.utils.PasswordEncrypter;
+import edu.itplus.bibliospring.backend.utils.impl.PasswordEncrypterSha256;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
