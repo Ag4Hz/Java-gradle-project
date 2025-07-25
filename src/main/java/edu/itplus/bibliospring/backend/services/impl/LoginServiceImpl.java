@@ -19,10 +19,7 @@ public class LoginServiceImpl implements LoginService {
         User dbUser = userDAO.findByUsername(user.getUsername());
         if (dbUser == null) {
             return false;
-        } else if (dbUser.getPassword().equals(passwordEncrypter.hashPassword(user.getPassword(), dbUser.getUuid()))) {
-            return true;
-        }
-        return false;
+        } else return dbUser.getPassword().equals(passwordEncrypter.hashPassword(user.getPassword(), dbUser.getUuid()));
     }
 
     @Override
