@@ -6,20 +6,28 @@ import edu.itplus.bibliospring.backend.repository.UserDAO;
 import java.util.List;
 
 public class TestUserDAO implements UserDAO {
-    private User user;
+    public static User nonDbUser;
+
+    public static User dbUser;
 
     public TestUserDAO() {
-        user = new User();
-        user.setPassword("123");
-        user.setUsername("Pistike");
-        user.setUuid("salt");
-        user.setId(1L);
+        nonDbUser = new User();
+        nonDbUser.setPassword(TestPasswordEncrypter.password);
+        nonDbUser.setUsername("Pistike");
+        nonDbUser.setUuid(TestPasswordEncrypter.salt);
+        nonDbUser.setId(1L);
+
+        dbUser = new User();
+        dbUser.setPassword(TestPasswordEncrypter.hashedPassword);
+        dbUser.setUsername("Pistike");
+        dbUser.setUuid(TestPasswordEncrypter.salt);
+        dbUser.setId(1L);
     }
 
     @Override
     public User findById(Long id) {
-        if (user.getId().equals(id)) {
-            return user;
+        if (nonDbUser.getId().equals(id)) {
+            return dbUser;
         } else {
             return null;
         }
@@ -42,13 +50,13 @@ public class TestUserDAO implements UserDAO {
 
     @Override
     public List<User> getAll() {
-        return List.of(new User[]{user});
+        return List.of(new User[]{dbUser});
     }
 
     @Override
     public User findByUsername(String username) {
-        if (user.getUsername().equals(username)) {
-            return user;
+        if (nonDbUser.getUsername().equals(username)) {
+            return dbUser;
         } else {
             return null;
         }
