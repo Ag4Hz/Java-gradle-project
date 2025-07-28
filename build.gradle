@@ -19,7 +19,7 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic:1.5.18")
     runtimeOnly("ch.qos.logback:logback-core:1.5.18")
     testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.5.4'
 }
 
 test {
@@ -27,10 +27,11 @@ test {
     finalizedBy jacocoTestReport
 }
 
+
 jacocoTestReport {
     reports {
-        xml.required = true
-        html.required = true
+        xml.required = false
+        csv.required = false
         html.outputLocation = layout.buildDirectory.dir("jacocoHtml")
     }
 }
