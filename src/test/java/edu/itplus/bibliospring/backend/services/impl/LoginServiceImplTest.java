@@ -42,7 +42,7 @@ class LoginServiceImplTest {
 
         testUserDao = mock(UserDAO.class);
         testPasswordEncrypter = mock(PasswordEncrypter.class);
-        when(testPasswordEncrypter.hashPassword(TestPasswordEncrypter.password, nonDbUser.getUuid()))
+        when(testPasswordEncrypter.hashPassword(TestPasswordEncrypter.password, TestPasswordEncrypter.salt))
                 .thenReturn(TestPasswordEncrypter.hashedPassword);
 
         ReflectionTestUtils.setField(serviceUnderTest, "userDAO", testUserDao);
