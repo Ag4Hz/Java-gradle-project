@@ -113,6 +113,5 @@ class LoginServiceImplTest {
         // Verify that the PasswordEncrypter's hashPassword method was called with the correct parameters
         assertThat(nonDbUser2.getPassword()).isEqualTo(TestPasswordEncrypter.hashedPassword);
         verify(testUserDao, times(1)).create(nonDbUser2);
-        verify(testUserDao).create(nonDbUser2);
     }
 }
