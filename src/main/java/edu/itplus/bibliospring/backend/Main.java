@@ -13,22 +13,20 @@ public class Main {
     @Autowired
     private LoginService loginService;
 
-    @Autowired
-    private UserDAO userDAO;
-
     @PostConstruct
     public void postConstruct() {
         User user = new User();
         user.setUsername("Sanyi");
         user.setPassword("asd");
-        System.out.printf("User with ID 1: %s%n", userDAO.findById(1L));
+        //loginService.register(user);
+        System.out.println(loginService.login(user));
 
-        //User u1 = new User();
-        //u1.setUsername("Pistike2");
-        //u1.setPassword("asd");
+        User u1 = new User();
+        u1.setUsername("Pistike2");
+        u1.setPassword("asd");
         //loginService.register(u1);
-        //u1.setPassword("asd");
-        //System.out.println(loginService.login(u1));
+        u1.setPassword("asd");
+        System.out.println(loginService.login(u1));
 
         /*
         DAOFactory factory = DAOFactory.getInstance();
