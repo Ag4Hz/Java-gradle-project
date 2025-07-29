@@ -1,7 +1,16 @@
 package edu.itplus.bibliospring.backend.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "users")
 public class User extends BaseEntity {
-    private String username, password;
+    @Column(name = "username", unique = true, length = 40)
+    private String username;
+    @Column(name = "password", length = 64)
+    private String password;
 
     public String getUsername() {
         return username;
