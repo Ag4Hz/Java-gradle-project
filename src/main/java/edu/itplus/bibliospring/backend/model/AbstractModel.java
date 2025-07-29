@@ -1,12 +1,21 @@
 package edu.itplus.bibliospring.backend.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.PrePersist;
+
 import java.util.Objects;
 import java.util.UUID;
 
 @MappedSuperclass
 public class AbstractModel {
+    @Column(name = "uuid", unique = true, nullable = false, length = 36)
     private String uuid;
+
+    @PrePersist
+    public void prePersist() {
+        getUuid();
+    }
 
     public String getUuid() {
         if (uuid == null) {

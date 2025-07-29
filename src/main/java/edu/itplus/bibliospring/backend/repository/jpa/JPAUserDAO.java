@@ -1,0 +1,19 @@
+package edu.itplus.bibliospring.backend.repository.jpa;
+
+import edu.itplus.bibliospring.backend.model.User;
+import edu.itplus.bibliospring.backend.repository.UserDAO;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Repository;
+
+@Repository
+@Profile("JPA")
+public class JPAUserDAO extends BaseDAOBean<User, Long> implements UserDAO {
+    public JPAUserDAO() {
+        super(User.class);
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return null;
+    }
+}

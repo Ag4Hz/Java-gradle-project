@@ -1,6 +1,7 @@
 package edu.itplus.bibliospring.backend;
 
 import edu.itplus.bibliospring.backend.model.User;
+import edu.itplus.bibliospring.backend.repository.UserDAO;
 import edu.itplus.bibliospring.backend.services.LoginService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +13,22 @@ public class Main {
     @Autowired
     private LoginService loginService;
 
+    @Autowired
+    private UserDAO userDAO;
+
     @PostConstruct
     public void postConstruct() {
-        User u1 = new User();
-        u1.setUsername("Pistike2");
-        u1.setPassword("asd");
+        User user = new User();
+        user.setUsername("Sanyi");
+        user.setPassword("asd");
+        System.out.printf("User with ID 1: %s%n", userDAO.findById(1L));
+
+        //User u1 = new User();
+        //u1.setUsername("Pistike2");
+        //u1.setPassword("asd");
         //loginService.register(u1);
         //u1.setPassword("asd");
-        System.out.println(loginService.login(u1));
+        //System.out.println(loginService.login(u1));
 
         /*
         DAOFactory factory = DAOFactory.getInstance();
