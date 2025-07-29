@@ -1,8 +1,10 @@
 package edu.itplus.bibliospring.backend.model;
 
+import jakarta.persistence.MappedSuperclass;
 import java.util.Objects;
 import java.util.UUID;
 
+@MappedSuperclass
 public class AbstractModel {
     private String uuid;
 
